@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Awareness | Quiz | PropertyLaw</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('law.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .quiz-container {
+            width: 80%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .quiz-container.active {
+            display: block;
+        }
+
+        #title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .option {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+
+        .feedback {
+            font-style: italic;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .exit-btn {
+            background-color: #e74c3c;
+        }
+
+        .exit-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .scoreboard {
+            width: 80%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .scoreboard.active {
+            display: block;
+        }
+
+        .answers {
+            margin-top: 20px;
+            text-align: left;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .answers li {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .not-attempted {
+            background-color: #ffeeba;
+            color: #856404;
+        }
+
+        .result-summary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz" class="quiz-container active">
+        <h1 id="title">Property and land law Quiz</h1>
+        <div id="question"></div>
+        <div class="options" id="options"></div>
+        <div class="feedback" id="feedback"></div>
+        <div class="buttons">
+            <button class="btn exit-btn" id="exit-btn">Exit</button>
+            <button class="btn" id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <div id="scoreboard" class="scoreboard">
+        <h1>Quiz Results</h1>
+        <div id="score"></div>
+        <button class="btn" id="restart-btn">Restart Quiz</button>
+        <button class="btn exit-btn" id="exit-btn-results">Exit</button>
+        <div class="answers" id="answers"></div>
+    </div>
+
+    <script>
+        const quizContainer = document.getElementById('quiz');
+        const scoreboard = document.getElementById('scoreboard');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const feedbackElement = document.getElementById('feedback');
+        const scoreElement = document.getElementById('score');
+        const answersElement = document.getElementById('answers');
+        const nextButton = document.getElementById('next-btn');
+        const exitButton = document.getElementById('exit-btn');
+        const exitButtonResults = document.getElementById('exit-btn-results');
+        const restartButton = document.getElementById('restart-btn');
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let quizCompleted = false;
+
+        const questions = [
+    // Property Law Questions
+    {
+        question: 'Which act governs the transfer of property in India?',
+        options: ['Indian Contract Act', 'Transfer of Property Act', 'Indian Easements Act', 'Registration Act'],
+        correctAnswer: 'Transfer of Property Act',
+        advice: 'Correct!'
+    },
+    {
+        question: 'What is the legal document called that transfers ownership of property?',
+        options: ['Lease', 'Will', 'Deed', 'Mortgage'],
+        correctAnswer: 'Deed',
+        advice: 'Correct!'
+    },
+    {
+        question: 'Which act provides for the registration of property documents in India?',
+        options: ['Indian Stamp Act', 'Transfer of Property Act', 'Registration Act', 'Indian Contract Act'],
+        correctAnswer: 'Registration Act',
+        advice: 'Correct!'
+    },
+    {
+        question: 'What term describes a property owned by two or more people together?',
+        options: ['Joint ownership', 'Single ownership', 'Leasehold', 'Freehold'],
+        correctAnswer: 'Joint ownership',
+        advice: 'Correct!'
+    },
+    {
+        question: 'What is the term for the amount paid regularly by a tenant to a landlord for the use of property?',
+        options: ['Interest', 'Rent', 'Mortgage', 'Installment'],
+        correctAnswer: 'Rent',
+        advice: 'Correct!'
+    }
+];
+nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                nextQuestion();
+            } else {
+                completeQuiz();
+            }
+        });
+
+        exitButton.addEventListener('click', exitQuiz);
+        exitButtonResults.addEventListener('click', exitQuiz);
+        restartButton.addEventListener('click', restartQuiz);
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            quizCompleted = false;
+            userAnswers = Array(questions.length).fill(null); // Initialize userAnswers with null values
+            showQuestion(currentQuestionIndex);
+        }
+
+        function showQuestion(index) {
+            const question = questions[index];
+            questionElement.textContent = question.question;
+            optionsElement.innerHTML = '';
+
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectAnswer(option, i));
+                optionsElement.appendChild(optionElement);
+            });
+
+            feedbackElement.textContent = '';
+            updateButtons();
+        }
+
+        function selectAnswer(selectedOption, optionIndex) {
+            if (quizCompleted) return;
+
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+
+            // Update feedback and score
+            if (selectedOption === correctAnswer) {
+                score++;
+                feedbackElement.textContent = 'Correct';
+                optionsElement.children[optionIndex].classList.add('correct');
+            } else {
+                feedbackElement.textContent = `Wrong. The correct answer is ${correctAnswer}.`;
+                optionsElement.children[optionIndex].classList.add('wrong');
+            }
+
+            userAnswers[currentQuestionIndex] = {
+                question: questions[currentQuestionIndex].question,
+                selectedAnswer: selectedOption,
+                correctAnswer: correctAnswer
+            };
+
+            // Disable other options after selecting an answer
+            Array.from(optionsElement.children).forEach((option, i) => {
+                if (i !== optionIndex) {
+                    option.style.pointerEvents = 'none';
+                }
+            });
+
+            updateButtons();
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion(currentQuestionIndex);
+        }
+
+        function updateButtons() {
+            if (currentQuestionIndex === questions.length - 1) {
+                nextButton.textContent = 'Finish';
+            } else {
+                nextButton.textContent = 'Next';
+            }
+        }
+
+        function completeQuiz() {
+            quizCompleted = true;
+            quizContainer.classList.remove('active');
+            scoreboard.classList.add('active');
+            displayResults();
+        }
+
+        function displayResults() {
+            scoreElement.textContent = `You scored ${score} out of ${questions.length}!`;
+            answersElement.innerHTML = '';
+
+            userAnswers.forEach((answer, index) => {
+                const answerElement = document.createElement('li');
+                if (answer === null) {
+                    answerElement.innerHTML = `<strong>Question ${index + 1}:</strong> ${questions[index].question}<br>
+                                               <strong>Your Answer:</strong> Not Attempted<br>
+                                               <strong>Correct Answer:</strong> ${questions[index].correctAnswer}`;
+                    answerElement.classList.add('not-attempted');
+                } else {
+                    answerElement.innerHTML = `<strong>Question ${index + 1}:</strong> ${answer.question}<br>
+                                               <strong>Your Answer:</strong> ${answer.selectedAnswer}<br>
+                                               <strong>Correct Answer:</strong> ${answer.correctAnswer}`;
+                    answerElement.classList.add(answer.selectedAnswer === answer.correctAnswer ? 'correct' : 'wrong');
+                }
+                answersElement.appendChild(answerElement);
+            });
+            sendScoreToServer(score);
+        }
+
+        function restartQuiz() {
+            quizContainer.classList.add('active');
+            scoreboard.classList.remove('active');
+            startQuiz();
+        }
+
+        function exitQuiz() {
+            window.location.href = '1sthtml.html';
+        }
+
+        startQuiz();
+    </script>
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

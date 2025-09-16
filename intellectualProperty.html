@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Awareness | intellectualPropertyLaw</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <special-header></special-header>
+    <h1 id="LawsTitle">Intellectual Property Law</h1>
+    <button class="accordion">Definition</button>
+    <div class="panel">
+        <p><b>Intellectual Property (IP):</b><br>
+        Intellectual property refers to creations of the mind, such as inventions, literary and artistic works, designs, and symbols, names, and images used in commerce. IP is protected by law, enabling people to earn recognition or financial benefit from what they invent or create. It aims to foster an environment in which creativity and innovation can flourish.
+        </p>
+    </div>
+
+    <button class="accordion">Sections</button>
+    <div class="panel">
+        <p><b>Patent Law:</b><br>
+            <b>Section 2:</b> Definitions<br>
+            <b>Section 3:</b> What are not inventions<br>
+            <b>Section 4:</b> Inventions relating to atomic energy not patentable<br>
+            <b>Section 5:</b> Inventions where only methods or processes of manufacture patentable<br>
+            <b>Section 6:</b> Persons entitled to apply for patents
+        </p>
+        <p><b>Trademark Law:</b><br>
+            <b>Section 2:</b> Definitions<br>
+            <b>Section 3:</b> The establishment of the trademark registry and offices<br>
+            <b>Section 9:</b> Absolute grounds for refusal of registration<br>
+            <b>Section 11:</b> Relative grounds for refusal of registration<br>
+            <b>Section 17:</b> Registration of trade marks as a series
+        </p>
+        <p><b>Copyright Law:</b><br>
+            <b>Section 13:</b> Works in which copyright subsists<br>
+            <b>Section 14:</b> Meaning of copyright<br>
+            <b>Section 16:</b> No copyright except as provided in this Act<br>
+            <b>Section 17:</b> First owner of copyright<br>
+            <b>Section 19:</b> Mode of assignment
+        </p>
+        <p><b>Trade Secrets Law:</b><br>
+            <b>Section 1:</b> Definitions<br>
+            <b>Section 2:</b> Legal protections for trade secrets<br>
+            <b>Section 3:</b> Misappropriation<br>
+            <b>Section 4:</b> Remedies<br>
+            <b>Section 5:</b> Duration of protection
+        </p>
+    </div>
+
+    <button class="accordion">Applicable Situations</button>
+    <div class="panel">
+        <p><b>Intellectual Property Rights:</b><br>
+            <b>Protection Against Infringement:</b> IP rights come into play when there is unauthorized use of protected intellectual property.<br>
+            <b>Examples:</b> Copying a patented invention, using a trademark without permission, reproducing a copyrighted work without authorization, or disclosing trade secrets.
+        </p>
+    </div>
+
+    <button class="accordion">Real Time Examples</button>
+    <div class="panel">
+        <p><b>Patents:</b><br>
+            <b>1. Technology:</b> A company patents a new type of smartphone technology.<br>
+            <b>2. Pharmaceuticals:</b> A pharmaceutical company patents a new drug formulation.
+        </p>
+        <p><b>Trademarks:</b><br>
+            <b>1. Branding:</b> A business trademarks its unique logo and brand name.<br>
+            <b>2. Slogans:</b> A company trademarks its advertising slogans to prevent misuse.
+        </p>
+        <p><b>Copyrights:</b><br>
+            <b>1. Books:</b> An author copyrights their new novel.<br>
+            <b>2. Music:</b> A musician copyrights their new album.
+        </p>
+        <p><b>Trade Secrets:</b><br>
+            <b>1. Recipes:</b> A restaurant protects its secret recipe from being disclosed.<br>
+            <b>2. Business Strategies:</b> A company protects its confidential business plans.
+        </p>
+    </div>
+
+    <button class="accordion">Act Objective</button>
+    <div class="panel">
+        <p><b>Objective of Intellectual Property Rights:</b><br>
+            <b>Encourage Innovation:</b> Protecting IP incentivizes inventors and creators to innovate by granting them exclusive rights.<br>
+            <b>Promote Economic Growth:</b> IP protection contributes to economic growth by enabling businesses to capitalize on their inventions and creations.<br>
+            <b>Ensure Fair Competition:</b> IP laws help ensure a fair marketplace by preventing unauthorized use of protected works.<br>
+            <b>Enhance Public Welfare:</b> By encouraging the dissemination of knowledge and creativity, IP laws contribute to cultural and technological advancement.
+        </p>
+    </div>
+
+    <button class="accordion">How to Approach Legal Justice</button>
+    <div class="panel">
+        <p><b>Violation of Intellectual Property Rights:</b><br>
+            <b>Step 1: Identify the Violation:</b> Recognize unauthorized use or infringement of your intellectual property.<br>
+            <b>Step 2: Consult Legal Advice:</b> Seek guidance from legal experts specializing in IP law.<br>
+            <b>Step 3: File a Complaint:</b> File a complaint with the appropriate legal authorities or courts.<br>
+            <b>Step 4: Legal Proceedings:</b> Engage in legal proceedings, including gathering evidence and presenting your case in court.<br>
+            <b>Step 5: Obtain Remedies:</b> Seek appropriate remedies, such as injunctions, damages, or settlements, to address the infringement and protect your intellectual property rights.
+        </p>
+    </div>
+
+    <script>
+        function navigateHome() {
+            window.location.href = 'home.html';
+        }
+
+        function navigateAbout() {
+            window.location.href = 'about.html';
+        }
+
+        function navigateBlog() {
+            window.location.href = 'blog.html';
+        }
+
+        function navigateLogin() {
+            window.location.href = 'login.html';
+        }
+
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
